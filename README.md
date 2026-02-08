@@ -28,16 +28,27 @@ O foco desta etapa (Nível Novato) foi a utilização de **Estruturas de Dados C
 * **Vetores (Arrays Unidimensionais):** Para as entidades (navios).
 * **Loops Aninhados:** Para manipulação e exibição de dados em grade.
 
-## 🖥️ Exemplo de Saída
 
-```text
---- Batalha Naval ---
-0 0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 0 
-0 0 3 3 3 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 3 0 0 0 0 
-0 0 0 0 0 3 0 0 0 0 
-0 0 0 0 0 3 0 0 0 0 
-...
+-----------------------------------------------------------------------------------------------------
+
+# Desafio Batalha Naval - Nível Aventureiro ⚓
+
+Este projeto faz parte da disciplina de Programação no curso de **Análise e Desenvolvimento de Sistemas (ADS)**. O objetivo é demonstrar o uso de matrizes bidimensionais em C, aplicando lógica de posicionamento de navios em diferentes direções.
+
+## 🚀 Funcionalidades
+
+Nesta etapa (Aventureiro), o programa realiza as seguintes tarefas:
+- **Criação do Tabuleiro**: Uma matriz 10x10 inicializada com zeros (representando a água).
+- **Posicionamento Estático**: 
+  - 1 Navio Horizontal.
+  - 1 Navio Vertical.
+  - 2 Navios Diagonais (em direções opostas).
+- **Validação**: Garantia de que os navios não se sobreponham e permaneçam dentro dos limites (0-9).
+- **Exibição**: Impressão formatada do tabuleiro no terminal.
+
+## 🛠️ Tecnologias Utilizadas
+- Linguagem C
+- Compilador GCC
+- GitHub Codespaces
+
+
