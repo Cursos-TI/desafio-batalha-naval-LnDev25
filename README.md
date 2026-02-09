@@ -51,4 +51,14 @@ Nesta etapa (Aventureiro), o programa realiza as seguintes tarefas:
 - Compilador GCC
 - GitHub Codespaces
 
+-----------------------------------------------------------------------------------------------------
+
+## 🏆 Nível Mestre Alcançado!
+- **Habilidades Especiais**: Implementação de áreas de efeito dinâmicas.
+  - **Cruz**: Ataque em eixos cartesianos.
+  - **Cone**: Expansão triangular de dano.
+  - **Octaedro**: Área de efeito em formato de losango.
+- **Renderização**: Substituição de valores numéricos por caracteres visuais (`.`, `N`, `X`) para melhor experiência do usuário.
+- **Lógica Avançada**: Uso de geometria analítica e manipulação de matrizes sobrepostas com validação de bordas.
+
 
