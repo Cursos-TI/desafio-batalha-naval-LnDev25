@@ -1,85 +1,90 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-
-// INICIO DO PROGRAMA - NÍVEL NOVATO - TEMA 5
-
-
-// Definindo uma constante para o tamanho do tabuleiro
 #define TAM_TABULEIRO 10
 
 int main() {
+    int tabuleiro[TAM_TABULEIRO][TAM_TABULEIRO];
 
-   int tabuleiro [TAM_TABULEIRO] [TAM_TABULEIRO];
-
-   for (int agua = 0; agua < TAM_TABULEIRO; agua ++) {
-
-    for (int agua2 = 0; agua2 < TAM_TABULEIRO; agua2 ++) {
-
-        tabuleiro [agua] [agua2] = 0 ;
+    // 1. Inicializa o tabuleiro com 0 (Água)
+    for (int i = 0; i < TAM_TABULEIRO; i++) {
+        for (int j = 0; j < TAM_TABULEIRO; j++) {
+            tabuleiro[i][j] = 0;
+        }
     }
 
-   }
+    // 2. Posicionamento dos Navios (Nível Aventureiro)
+    for (int i = 0; i < 3; i++) {
+        tabuleiro[0][2 + i] = 3;             // Horizontal
+        tabuleiro[5 + i][5] = 3;             // Vertical
+        tabuleiro[1 + i][1 + i] = 3;         // Diagonal 1
+        tabuleiro[7 + i][8 - i] = 3;         // Diagonal 2
+    }
 
+    // 3. Definição das Matrizes de Habilidade (5x5)
+    int matrizCruz[5][5], matrizOctaedro[5][5], matrizCone[5][5];
 
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            // Lógica Cruz
+            matrizCruz[i][j] = (i == 2 || j == 2) ? 1 : 0;
+            // Lógica Octaedro
+            matrizOctaedro[i][j] = (abs(i - 2) + abs(j - 2) <= 2) ? 1 : 0;
+            // Lógica Cone
+            matrizCone[i][j] = (i < 3 && j >= (2 - i) && j <= (2 + i)) ? 1 : 0;
+        }
+    }
 
-   // INICIO DO PROGRAMA - NÍVEL AVENTUREIRO - TEMA 5
+    // 4. Sobreposição das Habilidades no Tabuleiro
+    // Usamos as mesmas variáveis 'oL' e 'oC' apenas mudando os valores
+    int oL, oC; 
 
+    // Carimbando a Cruz
+    oL = 2; oC = 2;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            int nL = oL + i - 2, nC = oC + j - 2;
+            if (nL >= 0 && nL < 10 && nC >= 0 && nC < 10 && matrizCruz[i][j] == 1) 
+                tabuleiro[nL][nC] = 5;
+        }
+    }
 
-   // Posicionando o Navio Diagonal 1
-   for (int posicao_diagonal1 = 0; posicao_diagonal1 < 3; posicao_diagonal1 ++) {
+    // Carimbando o Cone
+    oL = 5; oC = 8; // Mudei a coluna para não sobrepor tudo
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            int nL = oL + i - 2, nC = oC + j - 2;
+            if (nL >= 0 && nL < 10 && nC >= 0 && nC < 10 && matrizCone[i][j] == 1) 
+                tabuleiro[nL][nC] = 5;
+        }
+    }
 
-    tabuleiro [1 + posicao_diagonal1] [1 + posicao_diagonal1] = 3;
+    // Carimbando o Octaedro
+    oL = 8; oC = 2;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            int nL = oL + i - 2, nC = oC + j - 2;
+            if (nL >= 0 && nL < 10 && nC >= 0 && nC < 10 && matrizOctaedro[i][j] == 1) 
+                tabuleiro[nL][nC] = 5;
+        }
+    }
 
-   }
-
-   
-   // Posicionando o Navio Diagonal 2
-   for (int posicao_diagonal2 = 0; posicao_diagonal2 < 3; posicao_diagonal2 ++) {
-
-    tabuleiro [7 + posicao_diagonal2] [8 - posicao_diagonal2] = 3;
-    
-   }
-
-   
-   // FIM DO PROGRAMA - NÍVEL AVENTUREIRO - TEMA 5
-   
-
-
-   // Posicionando o Navio Horizontal
-   for (int posicao_horizontal = 0; posicao_horizontal < 3; posicao_horizontal ++) {
-
-    tabuleiro [0] [2 + posicao_horizontal] = 3 ;
-
-   }
-
-
-   // Posicionando o Navio Vertical
-   for (int posicao_vertical = 0; posicao_vertical < 3; posicao_vertical ++) {
-
-    tabuleiro [5 + posicao_vertical] [5] = 3 ;
-
-   }
-
-
-    // --- EXIBIÇÃO DO TABULEIRO ---
-    printf("\n--- Batalha Naval (Nível Aventureiro) ---\n\n");
+    // 5. Exibição Final Estilizada
+    printf("\n--- BATALHA NAVAL: NÍVEL MESTRE ---\n");
+    printf("Legenda: . (Água) | N (Navio) | X (Habilidade)\n\n");
 
     for (int linha = 0; linha < TAM_TABULEIRO; linha++) {
-
         for (int coluna = 0; coluna < TAM_TABULEIRO; coluna++) {
-
-            printf("%d ", tabuleiro[linha][coluna]);
-
+            if (tabuleiro[linha][coluna] == 3) {
+                printf("N ");
+            } else if (tabuleiro[linha][coluna] == 5) {
+                printf("X ");
+            } else {
+                printf(". ");
+            }
         }
-
-        printf("\n"); 
-
+        printf("\n");
     }
 
-
-   // FIM DO PROGRAMA - NÍVEL NOVATO - TEMA 5
-
-   
-   return 0;
-
+    return 0;
 }
